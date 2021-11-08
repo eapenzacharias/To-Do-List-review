@@ -1,10 +1,14 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/c86cad5485429bed3615/maintainability)](https://codeclimate.com/github/eapenzacharias/todolist-v2/maintainability) [![Linters](https://github.com/eapenzacharias/todolist-v2/actions/workflows/linters.yml/badge.svg)](https://github.com/eapenzacharias/todolist-v2/actions/workflows/linters.yml) [![CodeQL](https://github.com/eapenzacharias/todolist-v2/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/eapenzacharias/todolist-v2/actions/workflows/codeql-analysis.yml) [![NodeJS with Webpack](https://github.com/eapenzacharias/todolist-v2/actions/workflows/webpack.yml/badge.svg)](https://github.com/eapenzacharias/todolist-v2/actions/workflows/webpack.yml)
+
 # To Do list
 
 > Build a To Do List JavaScript application
 
-![app-img](https://user-images.githubusercontent.com/49812651/139960898-a9ff7e52-c4e6-4ec7-b1b4-1dfe89019a40.png)
+![app-img](https://user-images.githubusercontent.com/49812651/140420772-e9dd4d07-b479-4d84-b54f-aed375cfd4d0.png)
 
 Create a simple HTML list of To Do tasks using webpack to bundle JavaScript.
+
+## [Live Project](https://eapenzacharias.github.io/todolist-v2/dist)
 
 ## Built With
 
@@ -24,6 +28,13 @@ To get a local copy up and running follow these simple example steps.
 - Clone the repository to your local machine.
 - npm install webpack webpack-cli --save-dev
 ```
+#### Development
+Run webpack dev server for development 
+```
+- Clone the repository to your local machine.
+- npm start
+```
+
 ### Deployment
  run:
  ```
