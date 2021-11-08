@@ -1,12 +1,8 @@
-import { getLocal, updateLocal } from './localStorage.js';
-import newIndex from './updateIndex.js';
+import { getLocal, newIndex, updateLocal } from './localStorage.js';
 
-function changeStatus(done, tasks, task) {
-  const local = getLocal();
-  if (local) {
-    tasks = local;
-    tasks = newIndex(tasks);
-  }
+function changeStatus(done, task) {
+  let tasks = getLocal();
+  tasks = newIndex(tasks);
   const objIndex = tasks.findIndex((obj) => obj.index === task.index);
   if (done.checked) {
     tasks[objIndex].completed = true;
@@ -17,13 +13,9 @@ function changeStatus(done, tasks, task) {
   }
 }
 
-function editTask(editBtn, description, tasks, task) {
-  const local = getLocal();
-  if (local) {
-    tasks = local;
-    tasks = newIndex(tasks);
-  }
-
+function editTask(editBtn, description, task) {
+  let tasks = getLocal();
+  tasks = newIndex(tasks);
   const objIndex = tasks.findIndex((obj) => obj.index === task.index);
   editBtn.classList.toggle('editing');
   if (editBtn.innerHTML === '✎') {
@@ -37,12 +29,9 @@ function editTask(editBtn, description, tasks, task) {
   updateLocal(tasks);
 }
 
-function deleteTask(task, tasks) {
-  const local = getLocal();
-  if (local) {
-    tasks = local;
-    tasks = newIndex(tasks);
-  }
+function deleteTask(task) {
+  let tasks = getLocal();
+  tasks = newIndex(tasks);
   const objIndex = tasks.findIndex((obj) => obj.index === task.index);
   tasks.splice(objIndex, 1);
   newIndex(tasks);

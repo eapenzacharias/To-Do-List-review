@@ -1,25 +1,17 @@
-import { getLocal } from './localStorage.js';
+import { getLocal, newIndex } from './localStorage.js';
 import printTasks from './printInterface.js';
 import { getElement } from './queries.js';
-import newIndex from './updateIndex.js';
 
-function taskFilter(list) {
-  const local = getLocal();
-  if (local) {
-    list = local;
-  }
+function taskFilter() {
+  let list = getLocal();
   const filtered = list.filter((task) => !task.completed);
   list = newIndex(filtered);
   printTasks(list);
 }
 
-function filterBtn(list = []) {
-  const local = getLocal();
-  if (local) {
-    list = local;
-  }
+function filterBtn() {
   const clearBtn = getElement('#clear-btn');
-  clearBtn.onclick = () => taskFilter(list);
+  clearBtn.onclick = () => taskFilter();
 }
 
 export default filterBtn;

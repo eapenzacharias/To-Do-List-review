@@ -2,7 +2,7 @@ import { getLocal } from './localStorage.js';
 import { getElement, createElement } from './queries.js';
 import { changeStatus, deleteTask, editTask } from './updateTasks.js';
 
-const subMenu = (menu, description, tasks, task) => {
+const subMenu = (menu, description, task) => {
   const editBtn = createElement('span');
   editBtn.innerHTML = '&#9998;';
   editBtn.className = 'edit-btn btn fadeInRight';
@@ -10,10 +10,10 @@ const subMenu = (menu, description, tasks, task) => {
   delBtn.innerHTML = '&#10005;';
   delBtn.className = 'del-btn btn fadeInRight';
   editBtn.addEventListener('click', () => {
-    editTask(editBtn, description, tasks, task);
+    editTask(editBtn, description, task);
   });
   delBtn.addEventListener('click', () => {
-    tasks = deleteTask(task, tasks);
+    const tasks = deleteTask(task);
     // eslint-disable-next-line no-use-before-define
     printTasks(tasks);
   });
@@ -22,7 +22,7 @@ const subMenu = (menu, description, tasks, task) => {
   return menu;
 };
 
-function printTask(task, tasks) {
+function printTask(task) {
   const li = createElement('li');
   const done = createElement('input');
   done.type = 'checkbox';
@@ -32,7 +32,7 @@ function printTask(task, tasks) {
   }
   done.addEventListener('change', () => {
     li.classList.toggle('completed');
-    changeStatus(done, tasks, task);
+    changeStatus(done, task);
   });
   const description = createElement('span');
   description.className = 'task-text';
@@ -45,7 +45,7 @@ function printTask(task, tasks) {
   let mTog = true;
   menuBtn.addEventListener('click', () => {
     if (mTog) {
-      menu = subMenu(menu, description, tasks, task);
+      menu = subMenu(menu, description, task);
       mTog = false;
     } else {
       menu.innerHTML = '';
@@ -61,11 +61,8 @@ function printTask(task, tasks) {
 
 function printTasks(tasks = []) {
   getElement('#tasks').innerHTML = '';
-  const local = getLocal();
-  if (local) {
-    tasks = local;
-  }
-  tasks.forEach((task) => printTask(task, tasks));
+  tasks = getLocal();
+  tasks.forEach((task) => printTask(task));
 }
 
 export default printTasks;

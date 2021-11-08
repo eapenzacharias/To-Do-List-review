@@ -2,12 +2,26 @@ function updateLocal(tasks) {
   localStorage.setItem('todolist', JSON.stringify(tasks));
 }
 
-function getLocal() {
-  if (localStorage) {
-    const tasks = JSON.parse(localStorage.getItem('todolist'));
-    return tasks;
-  }
-  return -1;
+function newIndex(tasks) {
+  let i = 0;
+  tasks.forEach((task) => {
+    task.index = i + 1;
+    i += 1;
+  });
+  updateLocal(tasks);
+  return tasks;
 }
 
-export { updateLocal, getLocal };
+function getLocal() {
+  let local = [];
+  let tasks = [];
+  if (localStorage) {
+    local = JSON.parse(localStorage.getItem('todolist'));
+  }
+  if (local) {
+    tasks = newIndex(local);
+  }
+  return tasks;
+}
+
+export { updateLocal, newIndex, getLocal };

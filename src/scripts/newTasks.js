@@ -31,12 +31,7 @@ function updateTasks(tasks) {
   taskInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       if (taskInput.value.length > 0) {
-        const local = getLocal();
-        if (local) {
-          tasks = local;
-        } else {
-          tasks = [];
-        }
+        const tasks = getLocal();
         getTask(tasks, taskInput.value);
         taskInput.value = '';
       }
